@@ -1,0 +1,137 @@
+const stockData = [
+{ description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", quotation: "Q987", supplier: "Supplier
+1", allocation: "10", nonNeg: "No", stockOnHand: "500", avgUsage: "20", avgStockHoldingPeriod: "25", stockGroup: "Group
+1", comments: "Stock available" },
+{ description: "Paracetamol", nsnCode: "23456", depotCode: "B2", contract: "C234", quotation: "Q876", supplier:
+"Supplier 2", allocation: "5", nonNeg: "Yes", stockOnHand: "300", avgUsage: "15", avgStockHoldingPeriod: "30",
+stockGroup: "Group 2", comments: "Stock low" },
+{ description: "Ibuprofen", nsnCode: "34567", depotCode: "C3", contract: "C345", quotation: "Q765", supplier: "Supplier
+3", allocation: "8", nonNeg: "No", stockOnHand: "450", avgUsage: "18", avgStockHoldingPeriod: "28", stockGroup: "Group
+3", comments: "In transit" },
+{ description: "Amoxicillin", nsnCode: "45678", depotCode: "D4", contract: "C456", quotation: "Q654", supplier:
+"Supplier 4", allocation: "12", nonNeg: "No", stockOnHand: "600", avgUsage: "22", avgStockHoldingPeriod: "26",
+stockGroup: "Group 4", comments: "Stock available" },
+{ description: "Ciprofloxacin", nsnCode: "56789", depotCode: "E5", contract: "C567", quotation: "Q543", supplier:
+"Supplier 5", allocation: "14", nonNeg: "Yes", stockOnHand: "350", avgUsage: "10", avgStockHoldingPeriod: "31",
+stockGroup: "Group 5", comments: "Urgent order needed" },
+{ description: "Diazepam", nsnCode: "67890", depotCode: "F6", contract: "C678", quotation: "Q432", supplier: "Supplier
+6", allocation: "6", nonNeg: "No", stockOnHand: "450", avgUsage: "9", avgStockHoldingPeriod: "29", stockGroup: "Group
+6", comments: "Stock low" },
+{ description: "Loratadine", nsnCode: "78901", depotCode: "G7", contract: "C789", quotation: "Q321", supplier: "Supplier
+7", allocation: "7", nonNeg: "No", stockOnHand: "600", avgUsage: "25", avgStockHoldingPeriod: "35", stockGroup: "Group
+7", comments: "Stock sufficient" },
+{ description: "Simvastatin", nsnCode: "89012", depotCode: "H8", contract: "C890", quotation: "Q210", supplier:
+"Supplier 8", allocation: "20", nonNeg: "Yes", stockOnHand: "400", avgUsage: "18", avgStockHoldingPeriod: "32",
+stockGroup: "Group 8", comments: "Stock available" },
+{ description: "Omeprazole", nsnCode: "90123", depotCode: "I9", contract: "C901", quotation: "Q109", supplier: "Supplier
+9", allocation: "10", nonNeg: "Yes", stockOnHand: "500", avgUsage: "20", avgStockHoldingPeriod: "33", stockGroup: "Group
+9", comments: "Stock available" },
+{ description: "Metformin", nsnCode: "12334", depotCode: "J10", contract: "C112", quotation: "Q198", supplier: "Supplier
+10", allocation: "18", nonNeg: "No", stockOnHand: "480", avgUsage: "22", avgStockHoldingPeriod: "28", stockGroup: "Group
+10", comments: "Stock available" },
+{ description: "Hydrochlorothiazide", nsnCode: "23445", depotCode: "K11", contract: "C223", quotation: "Q187", supplier:
+"Supplier 11", allocation: "9", nonNeg: "Yes", stockOnHand: "550", avgUsage: "19", avgStockHoldingPeriod: "27",
+stockGroup: "Group 11", comments: "Stock available" },
+{ description: "Losartan", nsnCode: "34556", depotCode: "L12", contract: "C334", quotation: "Q176", supplier: "Supplier
+12", allocation: "15", nonNeg: "Yes", stockOnHand: "600", avgUsage: "15", avgStockHoldingPeriod: "30", stockGroup:
+"Group 12", comments: "Stock low" },
+{ description: "Furosemide", nsnCode: "45667", depotCode: "M13", contract: "C445", quotation: "Q165", supplier:
+"Supplier 13", allocation: "12", nonNeg: "No", stockOnHand: "400", avgUsage: "16", avgStockHoldingPeriod: "33",
+stockGroup: "Group 13", comments: "In transit" },
+{ description: "Warfarin", nsnCode: "56778", depotCode: "N14", contract: "C556", quotation: "Q154", supplier: "Supplier
+14", allocation: "8", nonNeg: "No", stockOnHand: "300", avgUsage: "10", avgStockHoldingPeriod: "28", stockGroup: "Group
+14", comments: "Stock available" },
+{ description: "Prednisone", nsnCode: "67889", depotCode: "O15", contract: "C667", quotation: "Q143", supplier:
+"Supplier 15", allocation: "10", nonNeg: "Yes", stockOnHand: "500", avgUsage: "18", avgStockHoldingPeriod: "32",
+stockGroup: "Group 15", comments: "Stock sufficient" },
+{ description: "Methylprednisolone", nsnCode: "78990", depotCode: "P16", contract: "C778", quotation: "Q132", supplier:
+"Supplier 16", allocation: "11", nonNeg: "Yes", stockOnHand: "400", avgUsage: "20", avgStockHoldingPeriod: "28",
+stockGroup: "Group 16", comments: "Stock available" },
+{ description: "Cetirizine", nsnCode: "89001", depotCode: "Q17", contract: "C889", quotation: "Q121", supplier:
+"Supplier 17", allocation: "7", nonNeg: "No", stockOnHand: "350", avgUsage: "9", avgStockHoldingPeriod: "26",
+stockGroup: "Group 17", comments: "Stock available" },
+{ description: "Clindamycin", nsnCode: "90112", depotCode: "R18", contract: "C990", quotation: "Q110", supplier:
+"Supplier 18", allocation: "6", nonNeg: "Yes", stockOnHand: "480", avgUsage: "8", avgStockHoldingPeriod: "27",
+stockGroup: "Group 18", comments: "In transit" },
+{ description: "Doxycycline", nsnCode: "12356", depotCode: "S19", contract: "C111", quotation: "Q099", supplier:
+"Supplier 19", allocation: "10", nonNeg: "No", stockOnHand: "550", avgUsage: "15", avgStockHoldingPeriod: "32",
+stockGroup: "Group 19", comments: "Stock available" },
+{ description: "Erythromycin", nsnCode: "23467", depotCode: "T20", contract: "C222", quotation: "Q088", supplier:
+"Supplier 20", allocation: "12", nonNeg: "Yes", stockOnHand: "600", avgUsage: "18", avgStockHoldingPeriod: "28",
+stockGroup: "Group 20", comments: "Stock sufficient" },
+{ description: "Azithromycin", nsnCode: "34578", depotCode: "U21", contract: "C333", quotation: "Q077", supplier:
+"Supplier 21", allocation: "15", nonNeg: "Yes", stockOnHand: "350", avgUsage: "10", avgStockHoldingPeriod: "30",
+stockGroup: "Group 21", comments: "Stock low" },
+{ description: "Ranitidine", nsnCode: "45689", depotCode: "V22", contract: "C444", quotation: "Q066", supplier:
+"Supplier 22", allocation: "20", nonNeg: "No", stockOnHand: "400", avgUsage: "20", avgStockHoldingPeriod: "35",
+stockGroup: "Group 22", comments: "Stock available" },
+{ description: "Lansoprazole", nsnCode: "56790", depotCode: "W23", contract: "C555", quotation: "Q055", supplier:
+"Supplier 23", allocation: "10", nonNeg: "Yes", stockOnHand: "600", avgUsage: "12", avgStockHoldingPeriod: "29",
+stockGroup: "Group 23", comments: "Stock available" },
+{ description: "Tamsulosin", nsnCode: "67891", depotCode: "X24", contract: "C666", quotation: "Q044", supplier:
+"Supplier 24", allocation: "8", nonNeg: "Yes", stockOnHand: "450", avgUsage: "16", avgStockHoldingPeriod: "32",
+stockGroup: "Group 24", comments: "Stock available" },
+{ description: "Amlodipine", nsnCode: "78902", depotCode: "Y25", contract: "C777", quotation: "Q033", supplier:
+"Supplier 25", allocation: "10", nonNeg: "No", stockOnHand: "550", avgUsage: "18", avgStockHoldingPeriod: "30",
+stockGroup: "Group 25", comments: "Stock low" },
+{ description: "Ramipril", nsnCode: "89013", depotCode: "Z26", contract: "C888", quotation: "Q022", supplier: "Supplier
+26", allocation: "6", nonNeg: "Yes", stockOnHand: "500", avgUsage: "9", avgStockHoldingPeriod: "27", stockGroup: "Group
+26", comments: "Stock available" },
+{ description: "Enalapril", nsnCode: "90124", depotCode: "A27", contract: "C999", quotation: "Q011", supplier: "Supplier
+27", allocation: "7", nonNeg: "No", stockOnHand: "350", avgUsage: "11", avgStockHoldingPeriod: "31", stockGroup: "Group
+27", comments: "Stock available" },
+{ description: "Bisoprolol", nsnCode: "12378", depotCode: "B28", contract: "C111", quotation: "Q000", supplier:
+"Supplier 28", allocation: "9", nonNeg: "Yes", stockOnHand: "450", avgUsage: "15", avgStockHoldingPeriod: "29",
+stockGroup: "Group 28", comments: "Stock sufficient" },
+{ description: "Carvedilol", nsnCode: "23489", depotCode: "C29", contract: "C222", quotation: "P987", supplier:
+"Supplier 29", allocation: "14", nonNeg: "No", stockOnHand: "300", avgUsage: "12", avgStockHoldingPeriod: "33",
+stockGroup: "Group 29", comments: "Stock available" },
+{ description: "Verapamil", nsnCode: "34590", depotCode: "D30", contract: "C333", quotation: "P876", supplier: "Supplier
+30", allocation: "13", nonNeg: "Yes", stockOnHand: "600", avgUsage: "20", avgStockHoldingPeriod: "28", stockGroup:
+"Group 30", comments: "In transit" },
+{ description: "Digoxin", nsnCode: "45601", depotCode: "E31", contract: "C444", quotation: "P765", supplier: "Supplier
+31", allocation: "8", nonNeg: "No", stockOnHand: "400", avgUsage: "15", avgStockHoldingPeriod: "34", stockGroup: "Group
+31", comments: "Stock low" },
+{ description: "Atorvastatin", nsnCode: "56712", depotCode: "F32", contract: "C555", quotation: "P654", supplier:
+"Supplier 32", allocation: "16", nonNeg: "Yes", stockOnHand: "450", avgUsage: "18", avgStockHoldingPeriod: "36",
+stockGroup: "Group 32", comments: "Stock available" },
+{ description: "Fluoxetine", nsnCode: "67823", depotCode: "G33", contract: "C666", quotation: "P543", supplier:
+"Supplier 33", allocation: "10", nonNeg: "No", stockOnHand: "350", avgUsage: "14", avgStockHoldingPeriod: "37",
+stockGroup: "Group 33", comments: "Stock available" },
+{ description: "Sertraline", nsnCode: "78934", depotCode: "H34", contract: "C777", quotation: "P432", supplier:
+"Supplier 34", allocation: "12", nonNeg: "Yes", stockOnHand: "500", avgUsage: "19", avgStockHoldingPeriod: "33",
+stockGroup: "Group 34", comments: "Stock available" },
+{ description: "Citalopram", nsnCode: "89045", depotCode: "I35", contract: "C888", quotation: "P321", supplier:
+"Supplier 35", allocation: "14", nonNeg: "Yes", stockOnHand: "600", avgUsage: "20", avgStockHoldingPeriod: "28",
+stockGroup: "Group 35", comments: "Stock sufficient" },
+{ description: "Escitalopram", nsnCode: "90156", depotCode: "J36", contract: "C999", quotation: "P210", supplier:
+"Supplier 36", allocation: "6", nonNeg: "No", stockOnHand: "400", avgUsage: "11", avgStockHoldingPeriod: "29",
+stockGroup: "Group 36", comments: "Stock available" },
+{ description: "Venlafaxine", nsnCode: "12390", depotCode: "K37", contract: "C111", quotation: "P109", supplier:
+"Supplier 37", allocation: "8", nonNeg: "No", stockOnHand: "450", avgUsage: "16", avgStockHoldingPeriod: "30",
+stockGroup: "Group 37", comments: "Stock available" },
+{ description: "Bupropion", nsnCode: "23401", depotCode: "L38", contract: "C222", quotation: "P098", supplier: "Supplier
+38", allocation: "7", nonNeg: "Yes", stockOnHand: "500", avgUsage: "9", avgStockHoldingPeriod: "31", stockGroup: "Group
+38", comments: "Stock low" },
+{ description: "Mirtazapine", nsnCode: "34512", depotCode: "M39", contract: "C333", quotation: "P987", supplier:
+"Supplier 39", allocation: "10", nonNeg: "Yes", stockOnHand: "600", avgUsage: "18", avgStockHoldingPeriod: "34",
+stockGroup: "Group 39", comments: "Stock available" },
+{ description: "Trazodone", nsnCode: "45623", depotCode: "N40", contract: "C444", quotation: "P876", supplier: "Supplier
+40", allocation: "12", nonNeg: "No", stockOnHand: "350", avgUsage: "12", avgStockHoldingPeriod: "32", stockGroup: "Group
+40", comments: "Stock available" },
+{ description: "Olanzapine", nsnCode: "56734", depotCode: "O41", contract: "C555", quotation: "P765", supplier:
+"Supplier 41", allocation: "15", nonNeg: "No", stockOnHand: "500", avgUsage: "20", avgStockHoldingPeriod: "28",
+stockGroup: "Group 41", comments: "Stock available" },
+{ description: "Quetiapine", nsnCode: "67845", depotCode: "P42", contract: "C666", quotation: "P654", supplier:
+"Supplier 42", allocation: "10", nonNeg: "Yes", stockOnHand: "400", avgUsage: "19", avgStockHoldingPeriod: "33",
+stockGroup: "Group 42", comments: "Stock low" },
+{ description: "Aripiprazole", nsnCode: "78956", depotCode: "Q43", contract: "C777", quotation: "P543", supplier:
+"Supplier 43", allocation: "8", nonNeg: "Yes", stockOnHand: "600", avgUsage: "16", avgStockHoldingPeriod: "30",
+stockGroup: "Group 43", comments: "In transit" },
+{ description: "Risperidone", nsnCode: "89067", depotCode: "R44", contract: "C888", quotation: "P432", supplier:
+"Supplier 44", allocation: "14", nonNeg: "No", stockOnHand: "450", avgUsage: "20", avgStockHoldingPeriod: "28",
+stockGroup: "Group 44", comments: "Stock available" },
+{ description: "Ziprasidone", nsnCode: "90178", depotCode: "S45", contract: "C999", quotation: "P321", supplier:
+"Supplier 45", allocation: "6", nonNeg: "No", stockOnHand: "350", avgUsage: "10", avgStockHoldingPeriod: "27",
+stockGroup: "Group 45", comments: "Stock available" }
+];

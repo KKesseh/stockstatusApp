@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">DDV Items</a></li>
+            <li><a href="#">Stock</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Suppliers</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Registeration Form</h2>
+        <form id="registrationForm">
+            <input type="text" id="name" placeholder="First Name(s)" required>
+            <input type="text" id="name" placeholder="Surname" required>
+            <input type="text" id="name" placeholder="Identification Number" required>
+            <input type="text" id="name" placeholder="Persal Number" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <!-- <input type="email" id="email" placeholder="District" required> -->
+            <select id="selectDistrict" required>
+                <option value="">District</option>
+                <option value="Pharmacist">Dr. Ruth Segomotsi Mompati</option>
+                <option value="Doctor">Ngaka Modiri Molema</option>
+                <option value="Admin">Naledi</option>
+                <option value="Admin">Bojanala</option>
+            </select>
+
+            <input type="tel" id="phone" placeholder="Hospital/Insitution" required>
+            <select id="designation" required>
+                <option value="">Designation</option>
+                <option value="Pharmacist">Pharmacist</option>
+                <option value="Doctor">Basic Pharmacist Assistant</option>
+                <option value="Admin">Post Basic Pharmacist Assistant</option>
+            </select>
+
+            <select id="role" required>
+                <option value="">Position</option>
+                <option value="Pharmacist">Pharmaceutical Manager</option>
+                <option value="Pharmacist">Pharmacy Manager</option>
+                <option value="Pharmacist">Pharmacy Supervisor</option>
+                <option value="Pharmacist">Responsible Pharmacist</option>
+                <option value="Doctor">Grade 1 Pharmacist</option>
+                <option value="Doctor">Grade 2 Pharmacist</option>
+                <option value="Doctor">Grade 3 Pharmacist</option>
+
+            </select>
+            <input type="text" id="hospital" placeholder="Registration Number" required>
+
+            <button type="submit">Submit</button>
+            <p class="message">Already a member? <a href="#" id="loginLink">Login</a></p>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                hospital: document.getElementById("hospital").value,
+                role: document.getElementById("role").value,
+            };
+
+            fetch("https://your-backend-api.com/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("responseMessage").innerText = "Registration Successful!";
+                })
+                .catch(error => {
+                    document.getElementById("responseMessage").innerText = "Error submitting form.";
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+</body>
+
+</html>

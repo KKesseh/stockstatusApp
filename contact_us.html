@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #006734;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 9;
+            background: #03773d;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #77ff87;
+            color: white;
+            z-index: 5;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tbody tr:hover {
+            background: #f1f1f1;
+        }
+
+        footer {
+            background-color: #afffb4;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .google-maps-section {
+            text-align: center;
+        }
+
+        .google-maps-section iframe {
+            display: block;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section style="text-align:center;">
+            <h2>Contact Information</h2>
+            <p>Mmmabatho Medical Stores Depot</p>
+            <p>2572 Mondiri Molema Road</p>
+            <p>Mmmabatho Unit 2</p>
+            <p>Mahikeng</p>
+            <p>Telephone: +123 456 7890</p>
+            <p>Manager: Joseph Maleme</p>
+        </section>
+
+        <section>
+            <h3>Departments</h3>
+            <section>
+                <h3>Download Depot Contact List</h3>
+                <a href="depot-contact-list.pdf" download>Click here to download the contact list</a>
+            </section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Manager</th>
+                        <th>Assistant</th>
+                        <th>Others</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Procurement</td>
+                        <td>Jane Smith</td>
+                        <td>John A. Doe</td>
+                        <td>Mark L. Green</td>
+                    </tr>
+                    <tr>
+                        <td>DDV</td>
+                        <td>Anna Lee</td>
+                        <td>Samuel Black</td>
+                        <td>Grace White</td>
+                    </tr>
+                    <tr>
+                        <td>Dispatch</td>
+                        <td>Emily Brown</td>
+                        <td>David Clark</td>
+                        <td>Susan Grey</td>
+                    </tr>
+                    <tr>
+                        <td>Receiving</td>
+                        <td>Michael Jordan</td>
+                        <td>Linda Harris</td>
+                        <td>James Taylor</td>
+                    </tr>
+                    <tr>
+                        <td>Admin</td>
+                        <td>Chris Walker</td>
+                        <td>Patricia King</td>
+                        <td>Peter Adams</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="google-maps-section">
+            <h3>Where are we located?</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3590.715432184969!2d25.6279462!3d-25.8459207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ea2cbbe155c3725%3A0x68bcbf180fb09100!2sMmabatho%20Medical%20Stores%20022!5e0!3m2!1sen!2sza!4v1739635832694!5m2!1sen!2sza"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

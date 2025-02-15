@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWDOH Pharmaceutical and Surgical Stock Status</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="infoBlock">
+        <h2>List of DDV - Direct Delivery Items</h2>
+        <p>
+            DDV (Direct Delivery) Items: DDV items are products that are not stored at the medical warehouse but are
+            instead directly delivered from the supplier to the healthcare facility. Facilities place their orders with
+            the medical stores, which then processes the order and communicates with the supplier to arrange delivery.
+            This method allows for specialized items or products that are not typically stocked to be delivered directly
+            to the facility from the company.
+        </p>
+        <p>Here you can view and manage the current stock status of both pharmaceutical and surgical items. Use the
+            search bar below to find specific products or filter by category.</p>
+    </section>
+    <main>
+        <!-- Search and Category Selector -->
+        <div id="searchAndCategory">
+            <input type="text" id="searchInput" placeholder="Search Item/ICN Code." onkeyup="filterTable()">
+            <select id="categorySelect" onchange="filterTable()">
+                <option value="All">All</option>
+                <option value="Pharmaceuticals">Pharmaceuticals</option>
+                <option value="Surgicals">Surgicals</option>
+            </select>
+        </div>
+
+        <table id="stockTable">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>NSN Code</th>
+                    <th>Depot Code</th>
+                    <th>Contract</th>
+                    <th>Supplier</th>
+                    <th>Stock Group</th>
+                    <th>Level of Care</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2025 NWDOH. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const stockData = [
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", supplier: "Supplier 1", stockGroup: "Pharmaceuticals", levelOfCare: "DDV HOsp", comments: "Stock available" },
+
+        ];
+
+
+        function filterTable() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const categorySelect = document.getElementById("categorySelect").value;
+            const table = document.getElementById("stockTable");
+            const tbody = table.querySelector("tbody");
+            tbody.innerHTML = ""; // Clear existing rows
+
+            const filteredData = stockData.filter(item => {
+                const matchesSearch = item.description.toLowerCase().includes(searchInput);
+                const matchesCategory = categorySelect === "All" || item.stockGroup === categorySelect;
+                return matchesSearch && matchesCategory;
+            });
+
+            filteredData.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.description}</td>
+                    <td>${item.nsnCode}</td>
+                    <td>${item.depotCode}</td>
+                    <td>${item.contract}</td>
+                    <td>${item.supplier}</td>
+                    <td>${item.stockGroup}</td>
+                    <td>${item.levelOfCare}</td>
+                    <td>${item.comments}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initial table population
+        window.onload = filterTable;
+    </script>
+</body>
+
+</html>

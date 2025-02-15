@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Medicines Formulary</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+    <nav>
+        <ul>
+
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+
+            <li><a href="about.html">About</a></li>
+
+        </ul>
+    </nav>
+    <div class="image-container">
+        <img src="nw_doh.jpg" alt="Stock Delivery Vehicle" class="delivery-image">
+    </div>
+    <div class="intro-container">
+        <h2>Welcome to NWDOH Pharmaceutical and Surgical Stock Status</h2>
+        <p>
+            This platform provides real-time updates on the availability of pharmaceutical and surgical stock across
+            hospitals and pharmacies.
+            Stay informed about stock levels, supplier details, and ensure uninterrupted patient care with up-to-date
+            inventory tracking.
+            Log in or register to access the latest stock status and supplier information.
+        </p>
+    </div>
+
+    <!-- Main container -->
+    <div class="main-container">
+
+        <!-- Left side with centered image -->
+
+
+        <!-- Right side with login form -->
+        <div class="form-container">
+            <h2>Login or Register</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p class="message">Not a member? <a href="#" id="registerLink">Register</a> | <a href="#"
+                    id="changePasswordLink">Change Password</a></p>
+
+            <!-- Registration form (hidden by default) -->
+            <form id="registrationForm" style="display: none;">
+                <h3>Register</h3>
+                <div class="input-group">
+                    <label for="newUsername">Username:</label>
+                    <input type="text" id="newUsername" name="newUsername" placeholder="Create username" required>
+                </div>
+                <div class="input-group">
+                    <label for="newPassword">Password:</label>
+                    <input type="password" id="newPassword" name="newPassword" placeholder="Create password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <p class="message">Already a member? <a href="#" id="loginLink">Login</a></p>
+            </form>
+
+            <!-- Password change form (hidden by default) -->
+            <form id="passwordChangeForm" style="display: none;">
+                <h3>Change Password</h3>
+                <div class="input-group">
+                    <label for="oldPassword">Old Password:</label>
+                    <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter old password"
+                        required>
+                </div>
+                <div class="input-group">
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password"
+                        required>
+                </div>
+                <button type="submit" class="btn">Change Password</button>
+                <p class="message">Remembered your password? <a href="#" id="loginLinkFromChange">Login</a></p>
+            </form>
+        </div>
+
+    </div>
+    <footer>
+        <p>&copy; 2025 NWDOH. All rights reserved.</p>
+    </footer>
+    <script>
+        // Handling the form visibility toggle between Login, Registration, and Password Change
+        document.getElementById('registerLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'block';
+            document.getElementById('passwordChangeForm').style.display = 'none';
+        });
+
+        document.getElementById('loginLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('passwordChangeForm').style.display = 'none';
+        });
+
+        document.getElementById('changePasswordLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('passwordChangeForm').style.display = 'block';
+        });
+
+        document.getElementById('loginLinkFromChange').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('passwordChangeForm').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>

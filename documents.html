@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS file -->
+    <script>
+        // Simple search functionality
+        function searchDocuments() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let table = document.getElementById('documentsTable');
+            let rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                let title = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+                let type = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+                let topic = rows[i].getElementsByTagName('td')[2].textContent.toLowerCase();
+                let dateAdded = rows[i].getElementsByTagName('td')[3].textContent.toLowerCase();
+
+                if (title.includes(input) || type.includes(input) || topic.includes(input) || dateAdded.includes(input)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="infoBlock">
+        <h2>Documents</h2>
+        <p>
+            Your central hub for essential resources related to drug supply
+            management.
+            Here, you will find **stock reports, communiqués, guidelines, notifications, and other critical documents**
+            to support effective decision-making in pharmaceutical logistics.
+            Whether you need up-to-date reports on stock levels, official directives, or best practices in drug
+            management, this section provides reliable and easily accessible information.
+        </p>
+
+    </section>
+    <main>
+        <div id="searchAndCategory">
+            <input type="text" id="searchInput" onkeyup="searchDocuments()" placeholder="Search documents...">
+        </div>
+
+        <table id="documentsTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Topic</th>
+                    <th>Date Added</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example document rows -->
+                <tr>
+                    <td>Document 1</td>
+                    <td>PDF</td>
+                    <td>Health</td>
+                    <td>2025-02-15</td> <!-- Date Added -->
+                    <td><a href="path/to/document1.pdf" download>Download</a></td>
+                </tr>
+                <tr>
+                    <td>Document 2</td>
+                    <td>Word</td>
+                    <td>Technology</td>
+                    <td>2025-02-14</td> <!-- Date Added -->
+                    <td><a href="path/to/document2.docx" download>Download</a></td>
+                </tr>
+                <tr>
+                    <td>Document 3</td>
+                    <td>Excel</td>
+                    <td>Finance</td>
+                    <td>2025-02-13</td> <!-- Date Added -->
+                    <td><a href="path/to/document3.xlsx" download>Download</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        &copy; 2025 Your Company | All Rights Reserved
+    </footer>
+
+</body>
+
+</html>

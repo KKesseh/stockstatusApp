@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWDOH Pharmaceutical and Surgical Stock Status</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="infoBlock">
+        <h2>List of Depot Stock currently available and in formulary</h2>
+        <p>
+            Depot Items: Depot stock refers to the medical and pharmaceutical products that are procured and stored at
+            the warehouse
+            for easy access by healthcare facilities. These items, including surgical and pharmaceutical products, are
+            available for
+            facilities to order as needed. Once the order is placed by the facility, the items are promptly delivered
+            from the warehouse
+            to their location, ensuring timely and efficient service.
+        </p>
+        <p>Here you can view and manage the current stock status of both pharmaceutical and surgical items. Use the
+            search bar below to find specific products or filter by category.</p>
+    </section>
+
+    <main>
+        <!-- Search and Category Selector -->
+        <div id="searchAndCategory">
+            <input type="text" id="searchInput" placeholder="Search for a drug..." onkeyup="filterTable()">
+            <select id="categorySelect" onchange="filterTable()">
+                <option value="All">All</option>
+                <option value="Pharmaceuticals">Pharmaceuticals</option>
+                <option value="Surgicals">Surgicals</option>
+            </select>
+        </div>
+
+        <table id="stockTable">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>NSN Code</th>
+                    <th>Depot Code</th>
+                    <th>Contract</th>
+                    <th>Quotation</th>
+                    <th>Supplier</th>
+                    <th>Allocation</th>
+                    <th>Non-Negotiable</th>
+                    <th>Stock On Hand</th>
+                    <th>Average Usage</th>
+                    <th>Average Stock Holding Period</th>
+                    <th>Stock Group</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2025 NWDOH. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const stockData = [
+            { description: "Aspirin", nsnCode: "12345", depotCode: "A1", contract: "C123", quotation: "Q987", supplier: "Supplier 1", allocation: "10", nonNeg: "No", stockOnHand: "500", avgUsage: "20", avgStockHoldingPeriod: "25", stockGroup: "Pharmaceuticals", comments: "Stock available" },
+            { description: "Paracetamol", nsnCode: "23456", depotCode: "B2", contract: "C234", quotation: "Q876", supplier: "Supplier 2", allocation: "5", nonNeg: "Yes", stockOnHand: "300", avgUsage: "15", avgStockHoldingPeriod: "30", stockGroup: "Pharmaceuticals", comments: "Stock low" },
+            { description: "Ibuprofen", nsnCode: "34567", depotCode: "C3", contract: "C345", quotation: "Q765", supplier: "Supplier 3", allocation: "8", nonNeg: "No", stockOnHand: "400", avgUsage: "18", avgStockHoldingPeriod: "28", stockGroup: "Pharmaceuticals", comments: "Stock available" },
+            { description: "Amoxicillin", nsnCode: "45678", depotCode: "D4", contract: "C456", quotation: "Q654", supplier: "Supplier 4", allocation: "12", nonNeg: "No", stockOnHand: "600", avgUsage: "22", avgStockHoldingPeriod: "26", stockGroup: "Pharmaceuticals", comments: "In transit" },
+            { description: "Ciprofloxacin", nsnCode: "56789", depotCode: "E5", contract: "C567", quotation: "Q543", supplier: "Supplier 5", allocation: "15", nonNeg: "Yes", stockOnHand: "150", avgUsage: "25", avgStockHoldingPeriod: "20", stockGroup: "Pharmaceuticals", comments: "Reorder soon" },
+            { description: "Surgical Gloves", nsnCode: "67890", depotCode: "F6", contract: "C678", quotation: "Q432", supplier: "Supplier 6", allocation: "10", nonNeg: "No", stockOnHand: "450", avgUsage: "10", avgStockHoldingPeriod: "30", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Surgical Masks", nsnCode: "78901", depotCode: "G7", contract: "C789", quotation: "Q321", supplier: "Supplier 7", allocation: "7", nonNeg: "Yes", stockOnHand: "500", avgUsage: "15", avgStockHoldingPeriod: "35", stockGroup: "Surgicals", comments: "In stock" },
+            { description: "Bandages", nsnCode: "89012", depotCode: "H8", contract: "C890", quotation: "Q210", supplier: "Supplier 8", allocation: "20", nonNeg: "No", stockOnHand: "1000", avgUsage: "30", avgStockHoldingPeriod: "33", stockGroup: "Surgicals", comments: "Plenty of stock" },
+            { description: "Scalpel", nsnCode: "90123", depotCode: "I9", contract: "C901", quotation: "Q109", supplier: "Supplier 9", allocation: "5", nonNeg: "Yes", stockOnHand: "120", avgUsage: "8", avgStockHoldingPeriod: "25", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Cotton Wool", nsnCode: "11234", depotCode: "J10", contract: "C112", quotation: "Q987", supplier: "Supplier 10", allocation: "15", nonNeg: "No", stockOnHand: "250", avgUsage: "40", avgStockHoldingPeriod: "22", stockGroup: "Surgicals", comments: "Low stock" },
+            { description: "Bromhexine", nsnCode: "22345", depotCode: "K11", contract: "C223", quotation: "Q876", supplier: "Supplier 11", allocation: "12", nonNeg: "No", stockOnHand: "550", avgUsage: "18", avgStockHoldingPeriod: "27", stockGroup: "Pharmaceuticals", comments: "Available" },
+            { description: "Saline Solution", nsnCode: "33456", depotCode: "L12", contract: "C334", quotation: "Q765", supplier: "Supplier 12", allocation: "20", nonNeg: "Yes", stockOnHand: "800", avgUsage: "22", avgStockHoldingPeriod: "40", stockGroup: "Pharmaceuticals", comments: "High stock" },
+            { description: "Vitamin C", nsnCode: "44567", depotCode: "M13", contract: "C445", quotation: "Q654", supplier: "Supplier 13", allocation: "30", nonNeg: "Yes", stockOnHand: "650", avgUsage: "15", avgStockHoldingPeriod: "20", stockGroup: "Pharmaceuticals", comments: "Stock available" },
+            { description: "Syringes", nsnCode: "55678", depotCode: "N14", contract: "C556", quotation: "Q543", supplier: "Supplier 14", allocation: "12", nonNeg: "No", stockOnHand: "700", avgUsage: "20", avgStockHoldingPeriod: "18", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Surgical Drapes", nsnCode: "66789", depotCode: "O15", contract: "C667", quotation: "Q432", supplier: "Supplier 15", allocation: "10", nonNeg: "Yes", stockOnHand: "300", avgUsage: "10", avgStockHoldingPeriod: "22", stockGroup: "Surgicals", comments: "Reorder soon" },
+            { description: "Antiseptic Solution", nsnCode: "77890", depotCode: "P16", contract: "C778", quotation: "Q321", supplier: "Supplier 16", allocation: "18", nonNeg: "Yes", stockOnHand: "450", avgUsage: "30", avgStockHoldingPeriod: "28", stockGroup: "Pharmaceuticals", comments: "Available" },
+            { description: "Oxygen Mask", nsnCode: "88901", depotCode: "Q17", contract: "C889", quotation: "Q210", supplier: "Supplier 17", allocation: "25", nonNeg: "No", stockOnHand: "100", avgUsage: "5", avgStockHoldingPeriod: "15", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Calcium Carbonate", nsnCode: "99012", depotCode: "R18", contract: "C990", quotation: "Q109", supplier: "Supplier 18", allocation: "5", nonNeg: "No", stockOnHand: "120", avgUsage: "8", avgStockHoldingPeriod: "25", stockGroup: "Pharmaceuticals", comments: "Available" },
+            { description: "Gauze Pads", nsnCode: "10123", depotCode: "S19", contract: "C101", quotation: "Q987", supplier: "Supplier 19", allocation: "10", nonNeg: "No", stockOnHand: "450", avgUsage: "15", avgStockHoldingPeriod: "30", stockGroup: "Surgicals", comments: "Stock low" },
+            { description: "Dexamethasone", nsnCode: "11234", depotCode: "T20", contract: "C112", quotation: "Q876", supplier: "Supplier 20", allocation: "12", nonNeg: "Yes", stockOnHand: "300", avgUsage: "20", avgStockHoldingPeriod: "40", stockGroup: "Pharmaceuticals", comments: "In stock" },
+            { description: "Needles", nsnCode: "22345", depotCode: "U21", contract: "C223", quotation: "Q765", supplier: "Supplier 21", allocation: "18", nonNeg: "No", stockOnHand: "150", avgUsage: "12", avgStockHoldingPeriod: "28", stockGroup: "Surgicals", comments: "Available" },
+            { description: "Hydrochlorothiazide", nsnCode: "33456", depotCode: "V22", contract: "C334", quotation: "Q654", supplier: "Supplier 22", allocation: "10", nonNeg: "Yes", stockOnHand: "600", avgUsage: "25", avgStockHoldingPeriod: "22", stockGroup: "Pharmaceuticals", comments: "Stock available" },
+            { description: "Face Shields", nsnCode: "44567", depotCode: "W23", contract: "C445", quotation: "Q543", supplier: "Supplier 23", allocation: "22", nonNeg: "Yes", stockOnHand: "200", avgUsage: "30", avgStockHoldingPeriod: "35", stockGroup: "Surgicals", comments: "Low stock" },
+            { description: "Prednisone", nsnCode: "55678", depotCode: "X24", contract: "C556", quotation: "Q432", supplier: "Supplier 24", allocation: "8", nonNeg: "No", stockOnHand: "500", avgUsage: "10", avgStockHoldingPeriod: "18", stockGroup: "Pharmaceuticals", comments: "Stock available" },
+            { description: "Surgical Suture", nsnCode: "66789", depotCode: "Y25", contract: "C667", quotation: "Q321", supplier: "Supplier 25", allocation: "10", nonNeg: "Yes", stockOnHand: "350", avgUsage: "20", avgStockHoldingPeriod: "30", stockGroup: "Surgicals", comments: "Reorder soon" },
+            { description: "Loperamide", nsnCode: "77890", depotCode: "Z26", contract: "C778", quotation: "Q210", supplier: "Supplier 26", allocation: "15", nonNeg: "No", stockOnHand: "700", avgUsage: "25", avgStockHoldingPeriod: "40", stockGroup: "Pharmaceuticals", comments: "In stock" },
+            { description: "Sterile Cotton", nsnCode: "88901", depotCode: "A27", contract: "C889", quotation: "Q109", supplier: "Supplier 27", allocation: "25", nonNeg: "Yes", stockOnHand: "450", avgUsage: "35", avgStockHoldingPeriod: "32", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Metronidazole", nsnCode: "99012", depotCode: "B28", contract: "C990", quotation: "Q987", supplier: "Supplier 28", allocation: "18", nonNeg: "Yes", stockOnHand: "400", avgUsage: "20", avgStockHoldingPeriod: "50", stockGroup: "Pharmaceuticals", comments: "Available" },
+            { description: "Glucometer Strips", nsnCode: "10123", depotCode: "C29", contract: "C101", quotation: "Q876", supplier: "Supplier 29", allocation: "20", nonNeg: "No", stockOnHand: "300", avgUsage: "30", avgStockHoldingPeriod: "40", stockGroup: "Surgicals", comments: "Low stock" },
+            { description: "Ceftriaxone", nsnCode: "11234", depotCode: "D30", contract: "C112", quotation: "Q765", supplier: "Supplier 30", allocation: "10", nonNeg: "No", stockOnHand: "150", avgUsage: "18", avgStockHoldingPeriod: "33", stockGroup: "Pharmaceuticals", comments: "Reorder soon" },
+            { description: "Blood Pressure Cuff", nsnCode: "22345", depotCode: "E31", contract: "C223", quotation: "Q654", supplier: "Supplier 31", allocation: "15", nonNeg: "Yes", stockOnHand: "350", avgUsage: "20", avgStockHoldingPeriod: "20", stockGroup: "Surgicals", comments: "In stock" },
+            { description: "Amoxicillin Clavulanate", nsnCode: "33456", depotCode: "F32", contract: "C334", quotation: "Q543", supplier: "Supplier 32", allocation: "12", nonNeg: "Yes", stockOnHand: "550", avgUsage: "22", avgStockHoldingPeriod: "18", stockGroup: "Pharmaceuticals", comments: "Available" },
+            { description: "Surgical Sponges", nsnCode: "44567", depotCode: "G33", contract: "C445", quotation: "Q432", supplier: "Supplier 33", allocation: "20", nonNeg: "No", stockOnHand: "200", avgUsage: "10", avgStockHoldingPeriod: "25", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Diazepam", nsnCode: "55678", depotCode: "H34", contract: "C556", quotation: "Q321", supplier: "Supplier 34", allocation: "8", nonNeg: "Yes", stockOnHand: "500", avgUsage: "15", avgStockHoldingPeriod: "40", stockGroup: "Pharmaceuticals", comments: "In stock" },
+            { description: "Thermometer", nsnCode: "66789", depotCode: "I35", contract: "C667", quotation: "Q210", supplier: "Supplier 35", allocation: "5", nonNeg: "No", stockOnHand: "250", avgUsage: "8", avgStockHoldingPeriod: "25", stockGroup: "Surgicals", comments: "Stock available" },
+            { description: "Benzathine Penicillin", nsnCode: "77890", depotCode: "J36", contract: "C778", quotation: "Q987", supplier: "Supplier 36", allocation: "25", nonNeg: "Yes", stockOnHand: "600", avgUsage: "10", avgStockHoldingPeriod: "30", stockGroup: "Pharmaceuticals", comments: "Available" },
+            { description: "Hemostatic Forceps", nsnCode: "88901", depotCode: "K37", contract: "C889", quotation: "Q876", supplier: "Supplier 37", allocation: "15", nonNeg: "No", stockOnHand: "300", avgUsage: "15", avgStockHoldingPeriod: "20", stockGroup: "Surgicals", comments: "Low stock" },
+            { description: "Lidocaine", nsnCode: "99012", depotCode: "L38", contract: "C990", quotation: "Q765", supplier: "Supplier 38", allocation: "18", nonNeg: "Yes", stockOnHand: "700", avgUsage: "25", avgStockHoldingPeriod: "18", stockGroup: "Pharmaceuticals", comments: "Stock available" },
+            { description: "Surgical Scissors", nsnCode: "10123", depotCode: "M39", contract: "C101", quotation: "Q654", supplier: "Supplier 39", allocation: "12", nonNeg: "Yes", stockOnHand: "400", avgUsage: "18", avgStockHoldingPeriod: "33", stockGroup: "Surgicals", comments: "Reorder soon" },
+            { description: "Cefuroxime", nsnCode: "11234", depotCode: "N40", contract: "C112", quotation: "Q543", supplier: "Supplier 40", allocation: "8", nonNeg: "No", stockOnHand: "250", avgUsage: "30", avgStockHoldingPeriod: "40", stockGroup: "Pharmaceuticals", comments: "Stock available" }
+        ];
+
+
+        function filterTable() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const categorySelect = document.getElementById("categorySelect").value;
+            const table = document.getElementById("stockTable");
+            const tbody = table.querySelector("tbody");
+            tbody.innerHTML = ""; // Clear existing rows
+
+            const filteredData = stockData.filter(item => {
+                const matchesSearch = item.description.toLowerCase().includes(searchInput);
+                const matchesCategory = categorySelect === "All" || item.stockGroup === categorySelect;
+                return matchesSearch && matchesCategory;
+            });
+
+            filteredData.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.description}</td>
+                    <td>${item.nsnCode}</td>
+                    <td>${item.depotCode}</td>
+                    <td>${item.contract}</td>
+                    <td>${item.quotation}</td>
+                    <td>${item.supplier}</td>
+                    <td>${item.allocation}</td>
+                    <td>${item.nonNeg}</td>
+                    <td>${item.stockOnHand}</td>
+                    <td>${item.avgUsage}</td>
+                    <td>${item.avgStockHoldingPeriod}</td>
+                    <td>${item.stockGroup}</td>
+                    <td>${item.comments}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initial table population
+        window.onload = filterTable;
+    </script>
+</body>
+
+</html>

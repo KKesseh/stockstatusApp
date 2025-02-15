@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers - Medicines Formulary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>NWDOH Pharmaceutical and Surgical Stock Status</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="infoBlock">
+        <h2>List of DDV - Direct Delivery Items</h2>
+        <p>
+            DDV (Direct Delivery) Items: DDV items are products that are not stored at the medical warehouse but are
+            instead directly delivered from the supplier to the healthcare facility. Facilities place their orders with
+            the medical stores, which then processes the order and communicates with the supplier to arrange delivery.
+            This method allows for specialized items or products that are not typically stocked to be delivered directly
+            to the facility from the company.
+        </p>
+        <p>Here you can view and manage the current stock status of both pharmaceutical and surgical items. Use the
+            search bar below to find specific products or filter by category.</p>
+    </section>
+
+    <div class="container">
+        <h1>Suppliers</h1>
+
+        <!-- Search Box -->
+        <input type="text" id="searchSupplier" placeholder="Search for a supplier..." onkeyup="searchSupplier()">
+
+        <!-- Suppliers List Table -->
+        <table id="supplierList">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="supplier" onclick="showDetails('supplier1')">
+                    <td>MedSupplies Ltd</td>
+                    <td>Medical Equipment</td>
+                    <td>Johannesburg</td>
+                </tr>
+                <tr class="supplier" onclick="showDetails('supplier2')">
+                    <td>Pharma Solutions Inc.</td>
+                    <td>Pharmaceuticals</td>
+                    <td>Pretoria</td>
+                </tr>
+                <tr class="supplier" onclick="showDetails('supplier3')">
+                    <td>Surgical Masters</td>
+                    <td>Surgical Tools</td>
+                    <td>Cape Town</td>
+                </tr>
+                <tr class="supplier" onclick="showDetails('supplier4')">
+                    <td>Health Goods Co.</td>
+                    <td>Health Supplies</td>
+                    <td>Durban</td>
+                </tr>
+                <tr class="supplier" onclick="showDetails('supplier5')">
+                    <td>Surgical Instruments Ltd</td>
+                    <td>Surgical Equipment</td>
+                    <td>Bloemfontein</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Supplier Details Modal -->
+    <div id="supplierDetails" class="supplierDetailsModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Supplier Details</h2>
+        <div id="detailsContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Medicines Formulary. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const suppliers = {
+            supplier1: {
+                name: "MedSupplies Ltd",
+                address: "123 Pharma St, Johannesburg",
+                phone: "012 345 6789",
+                contacts: ["John Doe", "Jane Roe"]
+            },
+            supplier2: {
+                name: "Pharma Solutions Inc.",
+                address: "456 Health Ave, Pretoria",
+                phone: "098 765 4321",
+                contacts: ["Alice Brown", "Bob Green"]
+            },
+            supplier3: {
+                name: "Surgical Masters",
+                address: "789 Surgery Rd, Cape Town",
+                phone: "021 654 3210",
+                contacts: ["Charlie Black", "David White"]
+            },
+            supplier4: {
+                name: "Health Goods Co.",
+                address: "101 Wellness Blvd, Durban",
+                phone: "031 123 4567",
+                contacts: ["Eve Blue", "Frank Red"]
+            },
+            supplier5: {
+                name: "Surgical Instruments Ltd",
+                address: "202 Surgery St, Bloemfontein",
+                phone: "051 234 5678",
+                contacts: ["George Grey", "Hannah Yellow"]
+            }
+        };
+
+        function searchSupplier() {
+            let input = document.getElementById("searchSupplier").value.toLowerCase();
+            let suppliers = document.querySelectorAll("#supplierList tbody tr");
+
+            suppliers.forEach(supplier => {
+                let text = supplier.textContent.toLowerCase();
+                supplier.style.display = text.includes(input) ? "" : "none";
+            });
+        }
+
+        function showDetails(supplierId) {
+            const details = suppliers[supplierId];
+            const detailsContent = document.getElementById("detailsContent");
+            detailsContent.innerHTML = `
+                <p><strong>Company:</strong> ${details.name}</p>
+                <p><strong>Physical Address:</strong> ${details.address}</p>
+                <p><strong>Cell Number:</strong> ${details.phone}</p>
+                <p><strong>Contacts:</strong> ${details.contacts.join(", ")}</p>
+            `;
+            document.getElementById("supplierDetails").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("supplierDetails").style.display = "none";
+        }
+    </script>
+
+    <style>
+        .supplierDetailsModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px gray;
+            width: 50%;
+        }
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 20px;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="style.css"> <!-- Ensure you link the correct stylesheet -->
+    <style>
+        /* Keep the body styling consistent */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #006734;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        nav {
+            background: #03773d;
+            ;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #afffb4;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>NWDOH PHARMACEUTICAL AND SURGICAL STOCK STATUS</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <h2>User Profile</h2>
+
+        <section id="infoBlock">
+
+            <p>
+                Edit your personal details as required and click the save button below.
+            </p>
+        </section>
+        <div class="profile-container">
+            <img id="profile-pic" src="zaza.jpg" alt="Profile Picture">
+            <input type="file" id="upload-pic" accept="image/*">
+            <input type="text" id="first-name" placeholder="First Name">
+            <input type="text" id="surname" placeholder="Surname">
+            <input type="text" id="id-number" placeholder="Identification Number">
+            <input type="text" id="persal-number" placeholder="Persal Number">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="phone" placeholder="Phone Number">
+            <input type="text" id="district" placeholder="District">
+            <input type="text" id="hospital" placeholder="Hospital/Institution">
+            <input type="text" id="position" placeholder="Position">
+            <input type="text" id="reg-number" placeholder="Registration Number">
+            <button onclick="saveProfile()">Save Profile</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('upload-pic').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profile-pic').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function saveProfile() {
+            const profile = {
+                firstName: document.getElementById('first-name').value,
+                surname: document.getElementById('surname').value,
+                idNumber: document.getElementById('id-number').value,
+                persalNumber: document.getElementById('persal-number').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                district: document.getElementById('district').value,
+                hospital: document.getElementById('hospital').value,
+                position: document.getElementById('position').value,
+                regNumber: document.getElementById('reg-number').value,
+                profilePic: document.getElementById('profile-pic').src
+            };
+            localStorage.setItem('userProfile', JSON.stringify(profile));
+            alert('Profile saved!');
+        }
+
+        function loadProfile() {
+            const savedProfile = localStorage.getItem('userProfile');
+            if (savedProfile) {
+                const profile = JSON.parse(savedProfile);
+                document.getElementById('first-name').value = profile.firstName;
+                document.getElementById('surname').value = profile.surname;
+                document.getElementById('id-number').value = profile.idNumber;
+                document.getElementById('persal-number').value = profile.persalNumber;
+                document.getElementById('email').value = profile.email;
+                document.getElementById('phone').value = profile.phone;
+                document.getElementById('district').value = profile.district;
+                document.getElementById('hospital').value = profile.hospital;
+                document.getElementById('position').value = profile.position;
+                document.getElementById('reg-number').value = profile.regNumber;
+                document.getElementById('profile-pic').src = profile.profilePic;
+            }
+        }
+
+        window.onload = loadProfile;
+    </script>
+
+    <footer>
+        <p>&copy; 2025 NWDOH. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppliers - Medicines Formulary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Welcome to NWDOH Pharmaceutical and Surgical Stock Status</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="depot_items.html">Depot Items</a></li>
+            <li><a href="ddv.html">DDV Items</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="contact_us.html">Contacts</a></li>
+            <li><a href="myprofile.html">My Profile</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Suppliers</h1>
+
+        <!-- Search Box -->
+        <input type="text" id="searchSupplier" placeholder="Search for a supplier..." onkeyup="searchSupplier()">
+
+        <!-- Suppliers List -->
+        <ul id="supplierList">
+            <li class="supplier" onclick="showDetails('supplier1')">MedSupplies Ltd</li>
+            <li class="supplier" onclick="showDetails('supplier2')">Pharma Solutions Inc.</li>
+            <li class="supplier" onclick="showDetails('supplier3')">Surgical Masters</li>
+            <li class="supplier" onclick="showDetails('supplier4')">Health Goods Co.</li>
+            <li class="supplier" onclick="showDetails('supplier5')">Surgical Instruments Ltd</li>
+        </ul>
+
+        <!-- Supplier Details Modal -->
+        <div id="supplierDetails" class="supplierDetailsModal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Supplier Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Category</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody id="detailsContent">
+                    <!-- Details will be inserted dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Medicines Formulary. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Supplier Data
+        const suppliers = {
+            supplier1: { company: "MedSupplies Ltd", category: "Medical Equipment", location: "Johannesburg" },
+            supplier2: { company: "Pharma Solutions Inc.", category: "Pharmaceuticals", location: "Pretoria" },
+            supplier3: { company: "Surgical Masters", category: "Surgical Tools", location: "Cape Town" },
+            supplier4: { company: "Health Goods Co.", category: "Health Supplies", location: "Durban" },
+            supplier5: { company: "Surgical Instruments Ltd", category: "Surgical Equipment", location: "Bloemfontein" }
+        };
+
+        function showDetails(supplierId) {
+            const supplier = suppliers[supplierId];
+            if (supplier) {
+                document.getElementById("detailsContent").innerHTML = `
+                    <tr>
+                        <td>${supplier.company}</td>
+                        <td>${supplier.category}</td>
+                        <td>${supplier.location}</td>
+                    </tr>
+                `;
+                document.getElementById("supplierDetails").style.display = "block";
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("supplierDetails").style.display = "none";
+        }
+
+        function searchSupplier() {
+            let input = document.getElementById("searchSupplier").value.toLowerCase();
+            let suppliers = document.querySelectorAll(".supplier");
+
+            suppliers.forEach(supplier => {
+                let text = supplier.textContent.toLowerCase();
+                supplier.style.display = text.includes(input) ? "" : "none";
+            });
+        }
+    </script>
+
+    <style>
+        .supplierDetailsModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        .close {
+            cursor: pointer;
+            float: right;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</body>
+
+</html>
